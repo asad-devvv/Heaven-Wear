@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0a12;
+  --color-ink-soft: #14131f;
+  --color-chrome: #d8dee9;
+  --color-flare: #ff3ea5;
+  --color-volt: #cfff3d;
+  --color-uv: #8b3cff;
+  --color-paper: #f3f1ff;
+
+  --font-display: "Rubik Mono One", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* chrome / holographic gradient text — the signature treatment */
+.text-chrome {
+  background: linear-gradient(
+    100deg,
+    #9aa5b8 0%,
+    #f3f1ff 18%,
+    #ff3ea5 36%,
+    #f3f1ff 52%,
+    #8b3cff 68%,
+    #f3f1ff 84%,
+    #9aa5b8 100%
+  );
+  background-size: 250% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: chrome-sheen 6s linear infinite;
+}
+
+@keyframes chrome-sheen {
+  0% { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* infinite marquee band */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* focus visibility, kept even inside a maximalist theme */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
